@@ -70,6 +70,11 @@ function hello(){
   console.log('hello!')
 }
 
+/*
+* Displays help menu
+*
+* @returns {void} //void is for the function to not return a value (tried to put it out of comment but didn't work)
+*/
 function help(){
   console.log("1.Type \"hello\" for greeting.\n2.Type \"exit\" or \"quit\" to close the app.\n3.Type \"help\" for help menu.")
 }
