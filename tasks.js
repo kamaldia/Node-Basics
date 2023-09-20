@@ -45,8 +45,8 @@ function onDataReceived(text) {
   else if(text === "help\n"){
     help();
   }
-  else if((text.slice(0,3)) === "add") {
-    add();
+  else if((text.slice(0,3)) === "add" && text !== "add\n") {
+    add(text);
   }
   else if((text.slice(0,6)) === "remove") {
     remove();
@@ -95,8 +95,12 @@ function help(){
 /*
  * adds a task
  */
-function add(){
-
+function add(text){
+  var text = text.trim()
+  text = text.slice(3, text.length)
+  text = text.trim() // trim again to remove space before text
+  tasks_list.push(text)
+  console.log("Added " + text)
 }
 
 /*
