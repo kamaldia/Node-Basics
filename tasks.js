@@ -33,6 +33,7 @@ function startApp(name){
  * @param  {string} text data typed by the user
  * @returns {void}
  */
+var tasks_list = ["Greet","Quit","Help","List","Add","Remove"] ;
 
 function onDataReceived(text) {
   if (text === 'quit\n' || text === "exit\n") {
@@ -43,6 +44,15 @@ function onDataReceived(text) {
   }
   else if(text === "help\n"){
     help();
+  }
+  else if((text.slice(0,3)) === "add") {
+    add();
+  }
+  else if((text.slice(0,6)) === "remove") {
+    remove();
+  }
+  else if((text.slice(0,4)) === "list") {
+    list();
   }
   else{
     unknownCommand(text);
@@ -82,6 +92,30 @@ function help(){
   console.log("1.Type \"hello\" or \"hello X\" for greeting.\n2.Type \"exit\" or \"quit\" to close the app.\n3.Type \"help\" for help menu.")
 }
 
+/*
+ * adds a task
+ */
+function add(){
+
+}
+
+/*
+ * lists all tasks
+ */
+function list() {
+  var menu = "Task:\n------------\n";
+  for(i=0 ; i < tasks_list.length ; i++){
+    menu += i+1 + "." + tasks_list[i] + "\n" ;
+  }
+  console.log(menu)
+}
+
+/*
+ * removes tasks
+ */
+function remove() {
+  
+}
 
 /**
  * Exits the application
