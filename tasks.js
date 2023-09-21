@@ -58,6 +58,9 @@ function onDataReceived(text) {
     else if (((text.replace(/\s+/g, "")).slice(6, text.length)) == 2) (
       remove(tasks_list, 2)
     )
+    else {
+      console.log("The number you entered doesn't exist.")
+    }
   }
   else if((text.slice(0,4)) === "list") {
     list();
@@ -128,12 +131,15 @@ function list() {
 function remove(array, remove_argument) {
   if (remove_argument == 0) {
     array.pop();
+    console.log("The last task \"" + tasks_list[tasks_list.length -1] + "\" is removed from the list.")
   }
   else if (remove_argument == 1) {
     array.shift();
+    console.log("The first task \"" + tasks_list[0] + "\" is removed from the list.")
   }
   else if (remove_argument == 2) {
     array.splice(1,1); // removes one item begining from index 1
+    console.log("The second task \"" + tasks_list[1] + "\" is removed from the list.")
   }
 }
 
