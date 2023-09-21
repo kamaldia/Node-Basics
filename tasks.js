@@ -68,20 +68,20 @@ function onDataReceived(text) {
   else if((text.slice(0,4)) === "list") {
     list();
   }
-  // else if((text.slice(0,4)) === "edit") {
-  //   if (text === "edit" || text === "edit\n") {
-  //     edit(tasks_list, "error");
-  //   }
-  //   else if (((text.replace(/\s+/g, "")).slice(6, text.length)) == 1) { //in the regular expression => /\s+/g <= \s is any space, + is to join \s with g which iterate over the string
-  //     remove(tasks_list, 1);
-  //   }
-  //   else if (((text.replace(/\s+/g, "")).slice(6, text.length)) == 2) (
-  //     remove(tasks_list, 2)
-  //   )
-  //   else {
-  //     console.log("The number you entered doesn't exist.")
-  //   }
-  // }
+  else if((text.slice(0,4)) === "edit") {  //still not complete
+    if (text === "edit" || text === "edit\n") {
+      edit(tasks_list, "error");
+    }
+    else if (((text.replace(/\s+/g, "")).slice(6, text.length)) == 1) { //in the regular expression => /\s+/g <= \s is any space, + is to join \s with g which iterate over the string
+      remove(tasks_list, 1);
+    }
+    else if (((text.replace(/\s+/g, "")).slice(6, text.length)) == 2) (
+      remove(tasks_list, 2)
+    )
+    else {
+      console.log("The number you entered doesn't exist.")
+    }
+  }
   else{
     unknownCommand(text);
   }
@@ -160,19 +160,17 @@ function remove(array, remove_argument) {
   }
 }
 
-// function edit(array, edit_argument) {
-//   if (edit_argument == 0) {
-//     array.replace(tasks_list[tasks_list.length -1], "new text");
-//     console.log("The last task \"" + tasks_list[tasks_list.length -1] + "\" is replaced by \"new text\".")
-//   }
-//   else if (edit_argument == 1) {
-//     array.replaced(tasks_list[0], "new text");
-//     console.log("The first task \"" + tasks_list[0] + "\" is removed from the list.")
-//   }
-//   else if (edit_argument == "error") {
-//     console.log("Error: Please enter \"edit new text\" or \"edit 1 new text\"!")
-//   }
-// }
+function edit(array, edit_argument) { //wrong, not complete
+  if (edit_argument == 0) {
+    array.replace(array[array.length -1], "new text");
+  }
+  else if (edit_argument == 1) {
+    array.replace(array[0], "new text");
+  }
+  else if (edit_argument == "error") {
+    console.log("Error: Please enter \"edit new text\" or \"edit 1 new text\"!")
+  }
+}
 
 /**
  * Exits the application
