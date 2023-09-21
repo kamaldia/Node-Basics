@@ -49,7 +49,15 @@ function onDataReceived(text) {
     add(text);
   }
   else if((text.slice(0,6)) === "remove") {
-    remove();
+    if (text === "remove" || text === "remove\n") {
+      remove(tasks_list, 0);
+    }
+    else if (((text.replace(/\s+/g, "")).slice(6, text.length)) == 1) { //in the regular expression => /\s+/g <= \s is any space, + is to join \s with g which iterate over the string
+      remove(tasks_list, 1);
+    }
+    else if (((text.replace(/\s+/g, "")).slice(6, text.length)) == 2) (
+      remove(tasks_list, 2)
+    )
   }
   else if((text.slice(0,4)) === "list") {
     list();
@@ -109,7 +117,7 @@ function add(text){
 function list() {
   var menu = "Task:\n------------\n";
   for(i=0 ; i < tasks_list.length ; i++){
-    menu += i+1 + "." + tasks_list[i] + "\n" ;
+    menu += i+1 + "." + tasks_list[i] + "\n" ; //lists the tasks in array, while adding a number based on task's index in the list
   }
   console.log(menu)
 }
@@ -117,8 +125,16 @@ function list() {
 /*
  * removes tasks
  */
-function remove() {
-  
+function remove(array, remove_argument) {
+  if (remove_argument == 0) {
+    array.pop();
+  }
+  else if (remove_argument == 1) {
+    array.shift();
+  }
+  else if (remove_argument == 2) {
+    array.splice(1,1); // removes one item begining from index 1
+  }
 }
 
 /**
