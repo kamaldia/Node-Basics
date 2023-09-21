@@ -55,16 +55,33 @@ function onDataReceived(text) {
     else if (((text.replace(/\s+/g, "")).slice(6, text.length)) == 1) { //in the regular expression => /\s+/g <= \s is any space, + is to join \s with g which iterate over the string
       remove(tasks_list, 1);
     }
-    else if (((text.replace(/\s+/g, "")).slice(6, text.length)) == 2) (
-      remove(tasks_list, 2)
-    )
     else {
-      console.log("The number you entered doesn't exist.")
+      let temp = (text.replace(/\s+/g, "")).slice(6, text.length); //to take the number
+      if (temp <= tasks_list.length) {
+        remove(tasks_list, temp)
+      }
+      else {
+        console.log("The number you entered doesn't exist.") //to handle error
+      }
     }
   }
   else if((text.slice(0,4)) === "list") {
     list();
   }
+  // else if((text.slice(0,4)) === "edit") {
+  //   if (text === "edit" || text === "edit\n") {
+  //     edit(tasks_list, "error");
+  //   }
+  //   else if (((text.replace(/\s+/g, "")).slice(6, text.length)) == 1) { //in the regular expression => /\s+/g <= \s is any space, + is to join \s with g which iterate over the string
+  //     remove(tasks_list, 1);
+  //   }
+  //   else if (((text.replace(/\s+/g, "")).slice(6, text.length)) == 2) (
+  //     remove(tasks_list, 2)
+  //   )
+  //   else {
+  //     console.log("The number you entered doesn't exist.")
+  //   }
+  // }
   else{
     unknownCommand(text);
   }
@@ -137,11 +154,25 @@ function remove(array, remove_argument) {
     array.shift();
     console.log("The first task \"" + tasks_list[0] + "\" is removed from the list.")
   }
-  else if (remove_argument == 2) {
-    array.splice(1,1); // removes one item begining from index 1
-    console.log("The second task \"" + tasks_list[1] + "\" is removed from the list.")
+  else {
+    console.log("Task \"" + array[remove_argument-1] + "\" is removed from the list.")
+    array.splice(remove_argument-1,1); // removes one item begining from index 1
   }
 }
+
+// function edit(array, edit_argument) {
+//   if (edit_argument == 0) {
+//     array.replace(tasks_list[tasks_list.length -1], "new text");
+//     console.log("The last task \"" + tasks_list[tasks_list.length -1] + "\" is replaced by \"new text\".")
+//   }
+//   else if (edit_argument == 1) {
+//     array.replaced(tasks_list[0], "new text");
+//     console.log("The first task \"" + tasks_list[0] + "\" is removed from the list.")
+//   }
+//   else if (edit_argument == "error") {
+//     console.log("Error: Please enter \"edit new text\" or \"edit 1 new text\"!")
+//   }
+// }
 
 /**
  * Exits the application
