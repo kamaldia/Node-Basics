@@ -68,18 +68,15 @@ function onDataReceived(text) {
   else if((text.slice(0,4)) === "list") {
     list();
   }
-  else if((text.slice(0,4)) === "edit") {  //still not complete
+  else if((text.slice(0,4)) === "edit") {
     if (text === "edit" || text === "edit\n") {
       edit(tasks_list, "error");
     }
-    else if (((text.replace(/\s+/g, "")).slice(6, text.length)) == 1) { //in the regular expression => /\s+/g <= \s is any space, + is to join \s with g which iterate over the string
-      remove(tasks_list, 1);
+    else if (text.length > 4 && isNaN((text.replace(/\s+/g, ""))[4])) { //in the regular expression => /\s+/g <= \s is any space, + is to join \s with g which iterate over the string
+      edit(tasks_list, 0, (text.replace(/\s+/g, "")).slice(4,(text.replace(/\s+/g, "")).length)); //if the 4th index of the text stripped from whitespaces is not a number we execute
     }
-    else if (((text.replace(/\s+/g, "")).slice(6, text.length)) == 2) (
-      remove(tasks_list, 2)
-    )
-    else {
-      console.log("The number you entered doesn't exist.")
+    else{
+      edit(tasks_list, 1, (text.replace(/\s+/g, "")).slice(5,(text.replace(/\s+/g, "")).length), text[5]);
     }
   }
   else{
@@ -160,15 +157,18 @@ function remove(array, remove_argument) {
   }
 }
 
-function edit(array, edit_argument) { //wrong, not complete
+function edit(array, edit_argument, text, i) {
   if (edit_argument == 0) {
-    array.replace(array[array.length -1], "new text");
+    array[array.length -1] = text;
   }
-  else if (edit_argument == 1) {
-    array.replace(array[0], "new text");
+  else if (edit_argument == 1 && i <= array.length) {
+    array[i-1] = text;
   }
   else if (edit_argument == "error") {
     console.log("Error: Please enter \"edit new text\" or \"edit 1 new text\"!")
+  }
+  else{
+    console.log("wrong number")
   }
 }
 
