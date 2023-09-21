@@ -97,7 +97,7 @@ function hello(text){
 * @returns {void} //void is for the function to not return a value (tried to put it out of comment but didn't work)
 */
 function help(){
-  console.log("1.Type \"hello\" or \"hello X\" for greeting.\n2.Type \"exit\" or \"quit\" to close the app.\n3.Type \"help\" for help menu.")
+  console.log("1.Type \"hello\" or \"hello X\" for greeting.\n2.Type \"exit\" or \"quit\" to close the app.\n3.Type \"help\" for help menu.\n4.Type \"add X\" to add task \"X\" to the list of tasks.\n5.Type \"list\" to show the list of tasks.\n6.Type \"remove\" to remove last task from the list, \"remove 1\" or \"remove 2\" to remove first or second task in the list respectively.")
 }
 
 /*
